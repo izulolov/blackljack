@@ -27,7 +27,7 @@ CARDS << 'G'
 
 require 'colorize'
 
-puts String.colors  
+puts String.colors
 
 SUITS1 = ['♥️'.red, '♦️'.red, '♣️'.black, '♠️'.black].freeze
 SUITS = %w[♥️.red ♦️ ♣️ ♠️].freeze
