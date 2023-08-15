@@ -50,8 +50,20 @@ class Deck
     shuffle_cards!
   end
 
-  # Колода изначально пуста, поэтому напишем метод для заполнения калоды карт
+  # Колода изначально пуста, поэтому обратимся к методу для заполнения карт
   def new_deck
+    new_deck!
+  end
+
+  def take_card
+    new_deck if deck_empty?
+    cards.pop
+  end
+
+  private
+
+  # Колода карт
+  def new_deck!
     Card::CARDS.each do |card|
       Card::SUITS.each do |suit|
         @cards << Card.new(card, suit)
@@ -59,15 +71,14 @@ class Deck
     end
   end
 
-  #def shuffle_cards # Для проверки перетасовки
-  #  shuffle_cards!
-  #end
-
-  private
-
   # Перетасовка карт
   def shuffle_cards!
     @cards.shuffle!
+  end
+
+  # Колода пустая?
+  def deck_empty?
+    cards.empty?
   end
 end
 
@@ -83,9 +94,11 @@ puts dr.balance
 cd = Card.new('A', 'dsads')
 puts cd.value
 
-=end
 dk = Deck.new
 puts dk.cards.count
 puts "#{dk.cards[0].name} - #{dk.cards[0].suit}"
 
 puts "#{dk.cards[0].name} - #{dk.cards[0].suit}"
+
+dk.take_card
+=end
