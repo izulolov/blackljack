@@ -24,4 +24,13 @@ CARDS = [*(2..10), 'J', 'Q', 'K', 'A'].freeze
 
 CARDS.each {|c| puts c}
 CARDS << 'G'
+
+require 'colorize'
+
+puts String.colors  
+
+SUITS1 = ['♥️'.red, '♦️'.red, '♣️'.black, '♠️'.black].freeze
+SUITS = %w[♥️.red ♦️ ♣️ ♠️].freeze
+SUITS.each {|st| puts st}
+
 =end
