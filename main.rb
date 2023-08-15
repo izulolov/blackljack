@@ -40,6 +40,12 @@ class Card
   end
 end
 
+class Deck
+  def initialize
+    @cards = []
+  end
+end
+
 =begin
 ur = User.new('Ikbol', 100)
 dr = Dealer.new
