@@ -4,4 +4,6 @@ class Player
     @name = name
     @balance = balance
   end
+
+  
 end
