@@ -13,8 +13,7 @@ class Deck
   end
 
   def take_card
-    new_deck if deck_empty?
-    cards.pop
+    deck_empty? ? new_deck : cards.pop
   end
 
   private
@@ -39,10 +38,13 @@ class Deck
   end
 end
 
+=begin
 dk = Deck.new
 puts dk.cards.count
 puts "#{dk.cards[0].name} - #{dk.cards[0].suit}"
 
 puts "#{dk.cards[0].name} - #{dk.cards[0].suit}"
-
+puts dk.cards.count
 dk.take_card
+puts dk.cards.count
+=end
