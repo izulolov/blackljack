@@ -4,6 +4,14 @@ class Player
     @name = name
     @balance = balance
   end
+
+  def show_cards
+
+  end
+
+  def add_card(card)
+
+  end
 end
 
 class User < Player
