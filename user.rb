@@ -4,11 +4,3 @@ class User < Player
     super(name)
   end
 end
-
-=begin
-ur = User.new('Ikbol')
-
-puts ur.name
-puts ur.balance
-
-=end

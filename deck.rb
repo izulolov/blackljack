@@ -13,7 +13,7 @@ class Deck
   end
 
   def take_card
-    deck_empty? ? new_deck : cards.pop
+    deck_empty? ? new_deck : @cards.shift
   end
 
   private
@@ -34,17 +34,6 @@ class Deck
 
   # Колода пустая?
   def deck_empty?
-    cards.empty?
+    @cards.empty?
   end
 end
-
-=begin
-dk = Deck.new
-puts dk.cards.count
-puts "#{dk.cards[0].name} - #{dk.cards[0].suit}"
-
-puts "#{dk.cards[0].name} - #{dk.cards[0].suit}"
-puts dk.cards.count
-dk.take_card
-puts dk.cards.count
-=end
