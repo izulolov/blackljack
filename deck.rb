@@ -1,19 +1,15 @@
 require_relative 'card'
 class Deck
   attr_reader :cards
+
   def initialize
     @cards = []
-    new_deck
+    new_deck!
     shuffle_cards!
   end
 
-  # Колода изначально пуста, поэтому обратимся к методу для заполнения карт
-  def new_deck
-    new_deck!
-  end
-
   def take_card
-    deck_empty? ? new_deck : @cards.shift
+    deck_empty? ? new_deck! : @cards.shift
   end
 
   private
@@ -36,4 +32,5 @@ class Deck
   def deck_empty?
     @cards.empty?
   end
+  
 end

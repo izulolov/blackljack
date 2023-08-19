@@ -7,15 +7,15 @@ class Main
 
   def user_name
     puts 'Введите своё имя:'
-    gets.chomp.to_s
+    @user_name = gets.chomp.to_s
   end
 
   def show_info
-    @main_game.players.each do |player|
-      puts "#{player.show_cards} - #{player.score}" if player.instance_of? User
-      puts "#{player.show_cards_close}" if player.instance_of? Dealer
-      #puts "#{player.show_cards}" if player.instance_of? Dealer
-    end
+    puts "Игрок: #{@user_name}. #{@main_game.status_bar}"
+    puts @main_game.user.show_cards
+    puts
+    puts "Игрок: #{'Dealer'}."
+    puts @main_game.dealer.show_cards_close
   end
 end
 

@@ -1,11 +1,12 @@
 require_relative 'deck'
 require_relative 'card'
 class Player
-  attr_reader :name, :balance, :score, :cards
+  attr_reader :name, :balance, :score, :cards, :type
   def initialize(name)
     @name = name
     @balance = 100
     @cards = []
+    type_player
   end
 
   def add_card(card)
@@ -13,8 +14,8 @@ class Player
     card_weight
   end
 
-  def show
-    @cards.each { |cd| puts "#{cd.name}- #{cd.suit}" }
+  def type_player
+    @name == 'Dealer' ? @type = 'Dealer' : @type = 'User'
   end
 
   # Все карты в рукe, то есть после раздачи.
@@ -23,10 +24,12 @@ class Player
   # Когда настало время открыт карты можно вызвать этот метод для Дилера.
   def show_cards
     view = ''
-    @cards.each { |card| view += "| s#{card.name} - #{card.suit} |" }
+    @cards.each { |card| view += "| #{card.name} - #{card.suit} |" }
+    #@cards.each { |card| view += card.show(self) }
     view
   end
-
+  
+  # Скорее всего этот мотед придется переделать
   # Вес карт который сейчас в руке грубо говоря
   def card_weight # Вес карт который сейчас в руке грубо говоря
     @score = 0 # сумма баллов карт в руке
