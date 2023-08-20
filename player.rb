@@ -1,7 +1,8 @@
 require_relative 'deck'
 require_relative 'card'
 class Player
-  attr_reader :name, :balance, :score, :cards, :type
+  attr_reader :name, :score, :cards, :type
+  attr_accessor :balance
   def initialize(name)
     @name = name
     @balance = 100
@@ -9,11 +10,18 @@ class Player
     type_player
   end
 
+  
   def add_card(card)
     @cards << card
     card_weight
   end
 
+  # Обновить набор карт и очки, если игра продолжается, то есть предедушие карты и очки должны обнулястя
+  def refresh
+    @cards = []
+    @score = 0
+  end
+  
   def type_player
     @name == 'Dealer' ? @type = 'Dealer' : @type = 'User'
   end
@@ -29,7 +37,7 @@ class Player
     view
   end
   
-  # Скорее всего этот мотед придется переделать
+  # Скорее всего этот метод придется переделать
   # Вес карт который сейчас в руке грубо говоря
   def card_weight # Вес карт который сейчас в руке грубо говоря
     @score = 0 # сумма баллов карт в руке

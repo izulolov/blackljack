@@ -1,8 +1,8 @@
 require_relative 'game'
-class Main
+class Main < Game
   def initialize
     @main_game = Game.new(user_name)
-    show_info
+    menu
   end
 
   def user_name
@@ -10,12 +10,25 @@ class Main
     @user_name = gets.chomp.to_s
   end
 
-  def show_info
-    puts "Игрок: #{@user_name}. #{@main_game.status_bar}"
-    puts @main_game.user.show_cards
-    puts
-    puts "Игрок: #{'Dealer'}."
-    puts @main_game.dealer.show_cards_close
+  # В данный момент более менее работает возможность "ОТКРЫТЬ КАРТУ"
+  # Другие возможности будут добавлятся постепенно
+  def menu
+    loop do
+      puts 'Выберите действие: 1-Пропустить ход
+      2-Добавить карту 3-Открыть карту'
+      action = gets.chomp
+      case action
+      when '1'
+        puts 'lost_step'
+      when '2'
+        puts 'add_card'
+      when '3'
+        @main_game.open_card
+        puts 'Хотите играть еще раз(Y/n)?'
+        console = gets.chomp
+        console.downcase == 'y' ? @main_game.start_game : exit
+      end
+    end
   end
 end
 
