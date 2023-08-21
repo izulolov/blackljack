@@ -6,7 +6,6 @@ class Game
   attr_accessor :user, :dealer, :money, :deck, :players
 
   def initialize(user_name)
-    #@money = 100
     @bet = 10
     @deck = Deck.new
     @user = User.new(user_name)
@@ -78,7 +77,6 @@ class Game
     result = 'dealer' if (21 - @dealer.score < 21 - @user.score) && @dealer.score <= 21
     result = 'draw' if (@user.score == @dealer.score) && (@user.score <= 21 && dealer.score <= 21)
     result
-    #@user.score > @dealer.score ? "Выиграл #{@user.name}" : "Выиграл #{@dealer.name}"
   end
 
   # После того как открыли карты показать результать
@@ -97,9 +95,3 @@ class Game
     puts @dealer.show_cards_close
   end
 end
-
-#gm = Game.new('Ikbol')
-
-#gm.take_money(gm.user, 10)
-
-#puts gm.user.balance

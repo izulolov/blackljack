@@ -1,5 +1,6 @@
 require_relative 'game'
-class Main < Game
+class Main
+
   def initialize
     @main_game = Game.new(user_name)
     menu
