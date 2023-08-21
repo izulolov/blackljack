@@ -10,7 +10,6 @@ class Player
     type_player
   end
 
-  
   def add_card(card)
     @cards << card
     card_weight
@@ -21,7 +20,7 @@ class Player
     @cards = []
     @score = 0
   end
-  
+
   def type_player
     @name == 'Dealer' ? @type = 'Dealer' : @type = 'User'
   end
@@ -36,7 +35,7 @@ class Player
     #@cards.each { |card| view += card.show(self) }
     view
   end
-  
+
   # Скорее всего этот метод придется переделать
   # Вес карт который сейчас в руке грубо говоря
   def card_weight # Вес карт который сейчас в руке грубо говоря

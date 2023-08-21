@@ -24,7 +24,7 @@ class Main < Game
         puts 'add_card'
       when '3'
         @main_game.open_card
-        puts 'Хотите играть еще раз(Y/n)?'
+        puts 'Хотите продолжить игру(Y/n)?'
         console = gets.chomp
         console.downcase == 'y' ? @main_game.start_game : exit
       end

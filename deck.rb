@@ -32,5 +32,4 @@ class Deck
   def deck_empty?
     @cards.empty?
   end
-  
 end
