@@ -17,6 +17,7 @@ class Main
     loop do
       puts 'Выберите действие: 1-Пропустить ход
       2-Добавить карту 3-Открыть карту'
+      print 'Действие: '
       action = gets.chomp
       case action
       when '1'

@@ -5,7 +5,7 @@ class Player
   attr_accessor :balance
   def initialize(name)
     @name = name
-    @balance = 100
+    @balance = 20
     @cards = []
     type_player
   end

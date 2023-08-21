@@ -21,6 +21,7 @@ class Game
   # Если игрок выбрал вариант продолжить игру
   # Надо сначала обновить их карты и очки, поэтому в player создали метод рефреш
   def start_game
+    stop_game # Остановить игру если денег на балансе не достаточно
     @user.refresh
     @dealer.refresh
     puts 'Раздача карт...'
@@ -38,8 +39,25 @@ class Game
     show_info
   end
 
+  # Остановить игру так как у одного из игроков не хватает денег
+  def stop_game
+    if !money_enough
+      puts 'Не достаточно денег у одно из игроков'
+      puts 'поэтому не может быть продолжена!'
+      puts 'Игра завершится через 2 секудны ...'
+      sleep(2)
+      exit
+    end
+  end
+
+  # Денег хватить чтобы продолжить игру?
+  def money_enough
+    (@user.balance >= 10 && @dealer.balance >= 10) ? true : false
+  end
+
   # Метод открыть карты. Внутри этого метода вызывается метод lose?
   # То есть открыть карты вывести кто выиграл и добавить деньги на баланс победителя
+  # Этот метод скорее всего придется вывести в интерфейс
   def open_card
     puts "Игрок: #{@user.name}:"
     puts @user.show_cards
@@ -78,7 +96,7 @@ class Game
     result = 'draw' if (@user.score == @dealer.score) && (@user.score <= 21 && dealer.score <= 21)
     result
   end
-
+  
   # После того как открыли карты показать результать
   def show_result
     return "Выиграл #{@user.name} - #{@user.score} очков" if lose? == 'user'
