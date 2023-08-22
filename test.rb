@@ -34,3 +34,7 @@ SUITS = %w[♥️.red ♦️ ♣️ ♠️].freeze
 SUITS.each {|st| puts st}
 
 =end
+
+a = [2,5,6,9]
+
+puts a.include?(5)

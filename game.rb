@@ -1,7 +1,7 @@
 require_relative 'deck'
 require_relative 'dealer'
 require_relative 'user'
-
+require_relative 'card'
 class Game
   attr_accessor :user, :dealer, :money, :deck, :players
 
@@ -18,6 +18,9 @@ class Game
     "Баланс: #{@user.balance.zero? ? 0 : @user.balance} Ставка: #{@bet} Очки: #{@user.score}"
   end
 
+  def tuz
+    tuz = Card.new('A','L')
+  end
   # Если игрок выбрал вариант продолжить игру
   # Надо сначала обновить их карты и очки, поэтому в player создали метод рефреш
   def start_game
@@ -30,6 +33,8 @@ class Game
     @dealer.balance -= 10
     @players.each do |player|
       2.times do
+        #player.cards.each { |cd| cd.name == 'A' ? }
+        @deck.take_card.suit == 'A'
         player.add_card(@deck.take_card)
       end
     end
@@ -43,9 +48,10 @@ class Game
   def stop_game
     if !money_enough
       puts 'Не достаточно денег у одно из игроков'
-      puts 'поэтому не может быть продолжена!'
+      puts 'поэтому игра не может быть продолжена!'
       puts 'Игра завершится через 2 секудны ...'
       sleep(2)
+      puts 'Игра завершена!'
       exit
     end
   end
