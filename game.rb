@@ -18,10 +18,6 @@ class Game
     "Баланс: #{@user.balance.zero? ? 0 : @user.balance} Ставка: #{@bet} Очки: #{@user.score}"
   end
 
-  def tuz
-    tuz = Card.new('A','L')
-  end
-  
   # Если игрок выбрал вариант продолжить игру
   # Надо сначала обновить их карты и очки, поэтому в player создали метод рефреш
   def start_game
@@ -45,7 +41,7 @@ class Game
     show_info
   end
 
-  # Пропустить ход. Когда пользователь пропустил ход, дилер проверяет свои карты и если надо берет еще один
+  # Пропустить ход. Когда пользователь пропустил ход, дилер проверяет свои карты и если надо берет еще одну карту
   def skip_move
     @dealer.add_card(@deck.take_card) if @dealer.score < 17
     show_info
@@ -112,6 +108,9 @@ class Game
     result = 'user' if (21 - @user.score < 21 - @dealer.score) && @user.score <= 21
     result = 'dealer' if (21 - @dealer.score < 21 - @user.score) && @dealer.score <= 21
     result = 'draw' if (@user.score == @dealer.score) && (@user.score <= 21 && dealer.score <= 21)
+    result = 'dealer' if @user.score >= 22
+    result = 'user' if @dealer.score >= 22
+    result = 'x2loser' if @dealer.score >=22 && @user.score >= 22
     result
   end
 
@@ -120,6 +119,7 @@ class Game
     return "Выиграл #{@user.name} - #{@user.score} очков" if lose? == 'user'
     return "Выиграл #{@dealer.name} - #{@dealer.score} очков" if lose? == 'dealer'
     return "Ничья! У обеих по #{@user.score} очков!" if lose? == 'draw'
+    return "Оба игрока проиграли! Деньги обратно вернутся в банк." if lose? == 'x2loser' 
   end
 
   # Из main перенес сюда.

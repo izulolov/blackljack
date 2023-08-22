@@ -24,17 +24,4 @@ class Card
       @value = 11
     end
   end
-
-=begin
-  Потом подумаю возможность использование это метода
-  def show(type)
-    cl = ''
-    if type.type == 'Dealer'
-      cl = '| * - * |'
-    else
-      cl = "| #{type.balance}|"
-    end
-    cl
-  end
-=end
 end
