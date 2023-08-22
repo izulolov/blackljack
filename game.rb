@@ -39,6 +39,12 @@ class Game
     show_info
   end
 
+  # Добавить одну карту пользователю и дилеру если выполняется условие
+  def add_one_card
+    @user.add_card(@deck.take_card) if @user.cards.count == 2
+    @dealer.add_card(@deck.take_card) if @dealer.score < 17
+    show_info
+  end
   # Остановить игру так как у одного из игроков не хватает денег
   def stop_game
     if !money_enough

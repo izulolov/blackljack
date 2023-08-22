@@ -35,7 +35,8 @@ class InterfaceMethod
 
   # Добавить одну карту
   def add_one_card
-    puts 'Добавил одну карту'
+    @main_game.add_one_card
+    #puts 'Добавил одну карту'
   end
 
   # Открыть карту
