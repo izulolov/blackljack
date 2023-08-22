@@ -30,7 +30,8 @@ class InterfaceMethod
 
   # Пропустить ход
   def skip_move
-    puts 'Пропустил ход!'
+    @main_game.skip_move
+    #puts 'Пропустил ход!'
   end
 
   # Добавить одну карту

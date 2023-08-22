@@ -39,6 +39,12 @@ class Game
     show_info
   end
 
+  # Пропустить ход. Когда пользователь пропустил ход, дилер проверяет свои карты и если надо берет еще один
+  def skip_move
+    @dealer.add_card(@deck.take_card) if @dealer.score < 17
+    show_info
+  end
+
   # Добавить одну карту пользователю и дилеру если выполняется условие
   def add_one_card
     @user.add_card(@deck.take_card) if @user.cards.count == 2
