@@ -21,6 +21,7 @@ class Game
   def tuz
     tuz = Card.new('A','L')
   end
+  
   # Если игрок выбрал вариант продолжить игру
   # Надо сначала обновить их карты и очки, поэтому в player создали метод рефреш
   def start_game
@@ -44,6 +45,18 @@ class Game
     show_info
   end
 
+  # Пропустить ход. Когда пользователь пропустил ход, дилер проверяет свои карты и если надо берет еще один
+  def skip_move
+    @dealer.add_card(@deck.take_card) if @dealer.score < 17
+    show_info
+  end
+
+  # Добавить одну карту пользователю и дилеру если выполняется условие
+  def add_one_card
+    @user.add_card(@deck.take_card) if @user.cards.count == 2
+    @dealer.add_card(@deck.take_card) if @dealer.score < 17
+    show_info
+  end
   # Остановить игру так как у одного из игроков не хватает денег
   def stop_game
     if !money_enough
@@ -51,7 +64,6 @@ class Game
       puts 'поэтому игра не может быть продолжена!'
       puts 'Игра завершится через 2 секудны ...'
       sleep(2)
-      puts 'Игра завершена!'
       exit
     end
   end
@@ -102,7 +114,7 @@ class Game
     result = 'draw' if (@user.score == @dealer.score) && (@user.score <= 21 && dealer.score <= 21)
     result
   end
-  
+
   # После того как открыли карты показать результать
   def show_result
     return "Выиграл #{@user.name} - #{@user.score} очков" if lose? == 'user'
