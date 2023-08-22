@@ -1,7 +1,7 @@
 require_relative 'deck'
 require_relative 'card'
 class Player
-  attr_reader :name, :score, :cards, :type
+  attr_reader :name, :score, :cards, :type, :count_ace
   attr_accessor :balance
   def initialize(name)
     @name = name
@@ -40,6 +40,14 @@ class Player
   # Вес карт который сейчас в руке грубо говоря
   def card_weight # Вес карт который сейчас в руке грубо говоря
     @score = 0 # сумма баллов карт в руке
-    @cards.each { |cd| @score += cd.value }
+    @count_ace = @cards.count { |cd| cd.name == 'A' } # Проверяем сколько тузов
+    
+    if count_ace >= 2 # Если туза больше чем 2
+      @cards.each { |cd| @score += cd.value }
+      @score = @score - (@count_ace - 1) * 10
+    else
+      @cards.each { |cd| @score += cd.value }
+    end
+    @score
   end
 end

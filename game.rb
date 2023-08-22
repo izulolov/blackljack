@@ -46,6 +46,7 @@ class Game
       puts 'поэтому не может быть продолжена!'
       puts 'Игра завершится через 2 секудны ...'
       sleep(2)
+      puts 'Конец игры!'
       exit
     end
   end
@@ -96,7 +97,7 @@ class Game
     result = 'draw' if (@user.score == @dealer.score) && (@user.score <= 21 && dealer.score <= 21)
     result
   end
-  
+
   # После того как открыли карты показать результать
   def show_result
     return "Выиграл #{@user.name} - #{@user.score} очков" if lose? == 'user'
