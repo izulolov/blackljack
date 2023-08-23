@@ -24,14 +24,13 @@ class Game
     stop_game # Остановить игру если денег на балансе не достаточно
     @user.refresh
     @dealer.refresh
+    system('clear') # Очистить терминал
     puts 'Раздача карт...'
     sleep(0.5)
     @user.balance -= 10
     @dealer.balance -= 10
     @players.each do |player|
       2.times do
-        #player.cards.each { |cd| cd.name == 'A' ? }
-        @deck.take_card.suit == 'A'
         player.add_card(@deck.take_card)
       end
     end
