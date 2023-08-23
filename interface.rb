@@ -19,6 +19,8 @@ class Interface
         interface_method_object.add_one_card
       when 3
         interface_method_object.open_card
+      else
+        puts 'Надо было выбрать 0, 1, 2, 3'
       end
     end
   end
