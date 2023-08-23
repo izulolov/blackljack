@@ -110,7 +110,7 @@ class Game
     result = 'draw' if (@user.score == @dealer.score) && (@user.score <= 21 && dealer.score <= 21)
     result = 'dealer' if @user.score >= 22
     result = 'user' if @dealer.score >= 22
-    result = 'x2loser' if @dealer.score >=22 && @user.score >= 22
+    result = 'x2loser' if @dealer.score >= 22 && @user.score >= 22
     result
   end
 
@@ -119,7 +119,7 @@ class Game
     return "Выиграл #{@user.name} - #{@user.score} очков" if lose? == 'user'
     return "Выиграл #{@dealer.name} - #{@dealer.score} очков" if lose? == 'dealer'
     return "Ничья! У обеих по #{@user.score} очков!" if lose? == 'draw'
-    return "Оба игрока проиграли! Деньги обратно вернутся в банк." if lose? == 'x2loser' 
+    return "Оба игрока проиграли! Деньги пойдут в благотворительный фонд." if lose? == 'x2loser'
   end
 
   # Из main перенес сюда.
