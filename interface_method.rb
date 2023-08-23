@@ -26,18 +26,17 @@ class InterfaceMethod
     puts '1 - Пропустить ход'
     puts '2 - Добавить карту'
     puts '3 - Открыть карты'
+    puts
   end
 
   # Пропустить ход
   def skip_move
     @main_game.skip_move
-    #puts 'Пропустил ход!'
   end
 
   # Добавить одну карту
   def add_one_card
     @main_game.add_one_card
-    #puts 'Добавил одну карту'
   end
 
   # Открыть карту

@@ -1,8 +1,7 @@
-require 'colorize' # gem install colorize https://www.devdungeon.com/content/colorize-ruby-terminal-output
+require 'colorize' # Установка gem install colorize; Сайт https://www.devdungeon.com/content/colorize-ruby-terminal-output
 require_relative 'player'
 class Card
   attr_reader :name, :suit, :value
-  #SUITS = %w[♥️ ♦️ ♣️ ♠️].freeze # Неинтер-ный массив слов, разделенный пробелом. Равносильно ["♥️", "♦️", "♣️", "♠️"]
   SUITS = ['♥️'.red, '♦️'.red, '♣️'.black, '♠️'.black].freeze
   CARDS = [*(2..10), 'J', 'Q', 'K', 'A'].freeze
 
@@ -12,16 +11,15 @@ class Card
     @value = calc_value_card(name)
   end
 
-  # Этот метод потом придется передалать
-  # Так как туз может быть не только 11 но и 1
-  def calc_value_card(card) 
+  # Стоимость карты
+  def calc_value_card(card)
     case card
     when 2..10
       @value = card
     when 'J', 'Q', 'K'
       @value = 10
     when 'A'
-      @value = 11
+      @value = 11 # Туз может быть 11 или 1, поэтому в методе card_weight учтем это
     end
   end
 end

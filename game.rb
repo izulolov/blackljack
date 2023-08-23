@@ -14,6 +14,7 @@ class Game
     start_game
   end
 
+  # Строка состояния игрока, то есть баланс, ставка и очки
   def status_bar
     "Баланс: #{@user.balance.zero? ? 0 : @user.balance} Ставка: #{@bet} Очки: #{@user.score}"
   end
@@ -52,6 +53,7 @@ class Game
     @dealer.add_card(@deck.take_card) if @dealer.score < 17
     show_info
   end
+
   # Остановить игру так как у одного из игроков не хватает денег
   def stop_game
     if !money_enough
@@ -121,7 +123,7 @@ class Game
     return "Оба игрока проиграли! Деньги пойдут в благотворительный фонд." if lose? == 'x2loser'
   end
 
-  # Из main перенес сюда.
+  # Показать карту игрока и закрытые карты дилера
   def show_info
     puts "Игрок: #{@user.name}. #{status_bar}"
     puts @user.show_cards

@@ -7,9 +7,9 @@ class Player
     @name = name
     @balance = 100
     @cards = []
-    type_player
   end
 
+  # Добавить карту
   def add_card(card)
     @cards << card
     card_weight
@@ -19,10 +19,6 @@ class Player
   def refresh
     @cards = []
     @score = 0
-  end
-
-  def type_player
-    @name == 'Dealer' ? @type = 'Dealer' : @type = 'User'
   end
 
   # Все карты в рукe, то есть после раздачи.
