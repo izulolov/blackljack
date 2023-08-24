@@ -14,7 +14,7 @@ class InterfaceMethod
 
   # Имя пользователя
   def user_name
-    puts 'Введите своё имя:'
+    print 'Введите своё имя: '
     @user_name = gets.chomp.to_s
   end
 
@@ -48,8 +48,7 @@ class InterfaceMethod
   # Хотите продолжить игру после того как открыли карты?
   def continu_game?
     puts 'Хотите продолжить игру(Y-да/anykey для выхода)?'
-    console = gets.chomp
-    console.downcase == 'y' ? @main_game.start_game : exit_game
+    gets.chomp.downcase == 'y' ? @main_game.start_game : exit_game
   end
 
   def exit_game

@@ -20,7 +20,7 @@ class Game
   end
 
   # Если игрок выбрал вариант продолжить игру
-  # Надо сначала обновить их карты и очки, поэтому в player создали метод рефреш
+  # Надо сначала обновить их карты и очки, поэтому в player.rb создали метод рефреш
   def start_game
     stop_game # Остановить игру если денег на балансе не достаточно
     @user.refresh
@@ -41,7 +41,8 @@ class Game
     show_info
   end
 
-  # Пропустить ход. Когда пользователь пропустил ход, дилер проверяет свои карты и если надо берет еще одну карту
+  # Пропустить ход. Когда пользователь пропустил ход, дилер проверяет свои 
+  # карты и если надо берет еще одну случайную карту
   def skip_move
     @dealer.add_card(@deck.take_card) if @dealer.score < 17
     show_info
@@ -72,21 +73,15 @@ class Game
 
   # Метод открыть карты. Внутри этого метода вызывается метод lose?
   # То есть открыть карты вывести кто выиграл и добавить деньги на баланс победителя
-  # Этот метод скорее всего придется вывести в интерфейс
+  # Внутри этого метода вызываем закрытый метод open_card!
   def open_card
-    puts "Игрок: #{@user.name}:"
-    puts @user.show_cards
-    puts
-    puts "Игрок: 'Dealer':"
-    puts @dealer.show_cards
-    puts
-    puts show_result
-    count_money
+   open_card!
   end
 
   # Добваить мани к балансу игроку
+  # Внутри этого метода вызываем закрытый метод take_money!
   def take_money(player, money)
-    player.balance += money
+    take_money!(player, money)
   end
 
   # После показа карт сделать расчет денег
@@ -123,12 +118,30 @@ class Game
     return "Оба игрока проиграли! Деньги пойдут в благотворительный фонд." if lose? == 'x2loser'
   end
 
-  # Показать карту игрока и закрытые карты дилера
+  # Показать карту игрока и закрытую карту дилера
   def show_info
     puts "Игрок: #{@user.name}. #{status_bar}"
     puts @user.show_cards
     puts
     puts "Игрок: 'Dealer'"
     puts @dealer.show_cards_close
+  end
+
+  # Тут желательно закрытые методы, которые доступны должны быть только внутри этого класса
+  private
+
+  def open_card!
+    puts "Игрок: #{@user.name}:"
+    puts @user.show_cards
+    puts
+    puts "Игрок: 'Dealer':"
+    puts @dealer.show_cards
+    puts
+    puts show_result
+    count_money
+  end
+
+  def take_money!(player, money)
+    player.balance += money
   end
 end

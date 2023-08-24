@@ -1,8 +1,11 @@
-require 'colorize' # Установка gem install colorize; Сайт https://www.devdungeon.com/content/colorize-ruby-terminal-output
-require_relative 'player'
+# Сначала необходимо установить gem colorize чтобы задать цвет карт.
+# Для этого введите gem install colorize и подключите таким образом: require 'colorize' 
+# Сайт https://www.devdungeon.com/content/colorize-ruby-terminal-output
+require 'colorize' 
+
 class Card
   attr_reader :name, :suit, :value
-  SUITS = ['♥️'.red, '♦️'.red, '♣️'.black, '♠️'.black].freeze
+  SUITS = ['♥️'.red, '♦️'.red, '♣️'.black, '♠️'.black].freeze # Вот тут использован colorize гем
   CARDS = [*(2..10), 'J', 'Q', 'K', 'A'].freeze
 
   def initialize(name, suit)

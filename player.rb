@@ -54,7 +54,7 @@ class Player
   def card_weight
     @score = 0 # сумма баллов карт в руке
     @count_ace = @cards.count { |cd| cd.name == 'A' } # Проверяем сколько тузов
-    if count_ace >= 2 # Если туза больше чем 2
+    if count_ace >= 2 # Если туза больше и равно 2
       @cards.each { |cd| @score += cd.value }
       @score = @score - (@count_ace - 1) * 10
     else
